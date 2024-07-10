@@ -1,0 +1,49 @@
+.input,
+.input p,
+.input input,
+.input input::placeholder {
+  font-size: 16px;
+}
+
+.input {
+  display: block;
+  width: 388px;
+  font-family: Roboto;
+}
+
+.input p,
+.input input {
+  color: var(--secondary-text);
+}
+
+.input p {
+  width: fit-content;
+  margin: 0;
+}
+
+.input input {
+  width: calc(100% - 34px);
+  margin-top: 8px;
+  padding: 16px;
+  background-color: #f7fbff;
+  border: 1px solid #d4d7e3;
+  border-radius: 12px;
+}
+
+.input input::placeholder {
+  color: #8897ad;
+  font-family: Roboto;
+}
+
+@media only screen and (max-width: 870px) {
+  .input,
+  .input p,
+  .input input,
+  .input input::placeholder {
+    font-size: 14px;
+  }
+
+  .input input {
+    padding: 14px 16px;
+  }
+}

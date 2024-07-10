@@ -1,11 +1,5 @@
-import "./App.css";
-import { Outlet } from "react-router";
-
-import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { initializeApp } from "/firebase/app";
+import { getAuth, onAuthStateChanged } from "/firebase/auth";
 
 const firebaseApp = initializeApp({
   apiKey: "AIzaSyCd0oa2R8dttBx8RGONvFyZt4NrIuP-KeI",
@@ -15,8 +9,7 @@ const firebaseApp = initializeApp({
   messagingSenderId: "784647084220",
   appId: "1:784647084220:web:e8258968ede7dc191358b9",
 });
-
-export const auth = getAuth(firebaseApp);
+const auth = getAuth(firebaseApp);
 
 onAuthStateChanged(auth, (user) => {
   if (user != null) {
@@ -25,13 +18,3 @@ onAuthStateChanged(auth, (user) => {
     console.log("no user");
   }
 });
-
-function App() {
-  return (
-    <>
-      <Outlet />
-    </>
-  );
-}
-
-export default App;

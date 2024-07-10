@@ -1,0 +1,246 @@
+:root {
+    --link: #1e4ae9;
+    --primary-text: #0c1421;
+    --secondary-text: #313957;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Roboto;
+  }
+  
+  a {
+    color: var(--link);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    gap: 32px;
+    padding: 32px;
+    width: calc(100% - 64px);
+    min-height: calc(100vh - 64px);
+    height: fit-content;
+  }
+  
+  .copyright {
+    width: 100%;
+    margin: 18px 0 0 0;
+    text-align: center;
+    color: #959cb6;
+    order: 3;
+  }
+  
+  .img-part {
+    width: calc(50% - 48px);
+    height: calc(100vh - 64px);
+    position: fixed;
+    top: 32px;
+    right: 32px;
+    background-image: url("/public/static/images/aside-img.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 24px;
+    order: 2;
+  }
+  
+  .login-part {
+    width: 388px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    order: 1;
+  }
+  
+  .login-header h1,
+  .login-header p {
+    margin: 0;
+    color: var(--primary-text);
+  }
+  
+  .login-header {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  
+  .login-header h1 {
+    font-family: sf-pro-rounded;
+    font-size: 36px;
+    color: var(--primary-text);
+  }
+  
+  .login-main {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  
+  .login-header p {
+    font-family: sf-pro-display;
+    font-size: 20px;
+    line-height: 160%;
+    color: var(--secondary-text);
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .forgot-password {
+    width: fit-content;
+    margin-left: auto;
+  }
+  
+  .privacy-policy {
+    display: flex;
+  }
+  
+  #privacy-policy-checkbox {
+    align-self: flex-start;
+  }
+  
+  .social-buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .or-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .or-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 0;
+  }
+  
+  .or-container::before {
+    content: "";
+    width: 100%;
+    height: 0;
+    border: 1px solid #cfdfe2;
+    position: absolute;
+    top: 50%;
+    z-index: 0;
+  }
+  
+  .or {
+    display: inline-block;
+    padding: 10px 16px;
+    position: relative;
+    z-index: 1;
+    background-color: #ffffff;
+    color: #294957;
+  }
+  
+  .or span {
+    font-size: 16px;
+  }
+  
+  .sign-up {
+    text-align: center;
+    margin: 0;
+    line-height: 160%;
+    font-size: 18px;
+    color: var(--secondary-text);
+  }
+  
+  @font-face {
+    font-family: roboto;
+    src: url("/public/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+  }
+  
+  @font-face {
+    font-family: sf-pro-display;
+    src: url("/public/fonts/sf-pro-display-cufonfonts/SFPRODISPLAYREGULAR.OTF")
+      format("opentype");
+  }
+  
+  @font-face {
+    font-family: sf-pro-rounded;
+    src: url("/public/fonts/SF-Pro-Rounded/SF-Pro-Rounded-Regular.otf")
+      format("opentype");
+  }
+  
+  @media only screen and (max-width: 870px) {
+    .not-small-screen-only {
+      display: none;
+    }
+  
+    .container {
+      width: 100%;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      gap: 27px;
+      padding: 24px 0;
+    }
+  
+    .img-part {
+      position: static;
+      width: calc(100% - 48px);
+      height: 180px;
+      margin: 0 24px;
+      order: 1;
+    }
+  
+    .login-part {
+      width: calc(100% - 48px);
+      padding: 0 24px;
+      height: fit-content;
+      order: 2;
+    }
+  
+    .login-main {
+      gap: 24px;
+    }
+  
+    .login-header {
+      gap: 16px;
+    }
+  
+    .login-header h1 {
+      font-size: 24px;
+    }
+  
+    .login-header p {
+      font-size: 15px;
+    }
+  
+    form {
+      gap: 16px;
+    }
+  
+    .or-form {
+      gap: 16px;
+    }
+  
+    .or {
+      padding-top: 18px;
+    }
+  
+    .social-buttons-container {
+      flex-direction: row;
+    }
+  
+    .sign-up {
+      font-size: 16px;
+    }
+  }
+  
+  @media only screen and (min-width: 871px) {
+    .small-screen-only {
+      display: none;
+    }
+  }
+  

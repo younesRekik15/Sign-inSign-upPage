@@ -1,0 +1,18 @@
+.main-button {
+  width: 388px;
+  padding: 16px 0;
+  border: none;
+  border-radius: 12px;
+  font-family: roboto;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: #162d3a;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 870px) {
+  .main-button {
+    padding: 14px 0;
+    font-size: 16px;
+  }
+}

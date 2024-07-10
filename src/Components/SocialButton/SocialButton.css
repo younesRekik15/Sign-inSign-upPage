@@ -1,0 +1,40 @@
+.social-button {
+  font-family: roboto;
+  font-size: 16px;
+  background-color: #f3f9fa;
+  border-radius: 12px;
+  border: none;
+  padding: 12px 9px;
+  width: 359px;
+  color: var(--secondary-text);
+}
+
+.social-button:hover {
+  cursor: pointer;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  margin-right: 16px;
+  vertical-align: middle;
+}
+
+.social-button-name {
+  display: inline-block;
+  width: 56px;
+  text-align: left;
+}
+
+@media only screen and (max-width: 870px) {
+  .social-button {
+    padding: 8px 9px;
+    width: 186px;
+    color: var(--secondary-text);
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
