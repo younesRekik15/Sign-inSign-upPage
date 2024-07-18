@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./SigninPage.css";
+import Popup from "../../Components/Popup/Popup";
 import SocialButton from "../../Components/SocialButton/SocialButton";
 import MainButton from "../../Components/MainButton/MainButton";
 import FacebookIcon from "../../Components/assets/icons/Facebook.svg";
@@ -31,6 +32,12 @@ interface Props {}
 const SigninPage = (props: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
+  const toggleSuccessPopup = () => {
+    setShowSuccessPopup(true);
+    setTimeout(()=>{setShowSuccessPopup(false)},5000);
+  };
 
   const handleEmailInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -46,6 +53,7 @@ const SigninPage = (props: Props) => {
       .then((result) => {
         const user = result.user;
         console.log(user.providerData);
+        toggleSuccessPopup();
       })
       .catch((error) => {
         console.log(error.code, error.text);
@@ -58,6 +66,7 @@ const SigninPage = (props: Props) => {
       .then((result) => {
         const user = result.user;
         console.log(user.providerData);
+        toggleSuccessPopup();
       })
       .catch((error) => {
         console.log(error.code, error.text);
@@ -71,6 +80,7 @@ const SigninPage = (props: Props) => {
         email,
         password
       );
+      toggleSuccessPopup();
       console.log(userCredential.user);
     } catch (error) {
       console.error("Error signing in:", error);
@@ -86,80 +96,89 @@ const SigninPage = (props: Props) => {
         alert(error.code + " " + error.text);
       });
   };
+  
 
   return (
-    <div className="container">
-      <div className="img-part"></div>
-      <div className="login-part">
-        <div className="flex-space-item"></div>
-        <main className="login-main">
-          <header className="login-header">
-            <h1>Welcome Back 👋</h1>
-            <p>
-              Today is a new day. It's your day. You shape it. <br />
-              Sign in to start managing your projects.
+    <>
+      <Popup
+        show={showSuccessPopup}
+        type="success"
+        message="signed in successfully !"
+        togglePopup={()=>{setShowSuccessPopup(false)}}
+      />
+      <div className="container">
+        <div className="img-part"></div>
+        <div className="login-part">
+          <div className="flex-space-item"></div>
+          <main className="login-main">
+            <header className="login-header">
+              <h1>Welcome Back 👋</h1>
+              <p>
+                Today is a new day. It's your day. You shape it. <br />
+                Sign in to start managing your projects.
+              </p>
+            </header>
+            <form>
+              <Input
+                type="email"
+                label="Email:"
+                placeholder="Enter your email address"
+                value={email}
+                handleInput={handleEmailInput}
+                width={{ width: "100%" }}
+              />
+              <Input
+                type="password"
+                label="Password:"
+                placeholder="Create your password (at least 8 characters)"
+                value={password}
+                handleInput={handlePasswordInput}
+                width={{ width: "100%" }}
+              />
+              <a className="forgot-password" onClick={resetPassword}>
+                Forgot Password?
+              </a>
+              <MainButton width={{ width: "100%" }} onClick={signin}>
+                Sign in
+              </MainButton>
+            </form>
+            <div className="or-form">
+              <div className="or-container">
+                <span className="or">
+                  <span>Or</span>
+                  <span className="small-screen-only"> sign in with</span>
+                </span>
+              </div>
+              <div className="social-buttons-container">
+                <SocialButton
+                  brandName="Google"
+                  registrationType="sign in"
+                  brandLink={GoogleIcon}
+                  width={{ width: "100%" }}
+                  onClick={signinWithGoogle}
+                />
+                <SocialButton
+                  brandName="Facebook"
+                  registrationType="sign in"
+                  brandLink={FacebookIcon}
+                  width={{ width: "100%" }}
+                  onClick={signinWithFacebook}
+                />
+              </div>
+            </div>
+            <p className="sign-up">
+              Don't you have an account? <Link to="SignupPage">Sign up</Link>
             </p>
-          </header>
-          <form>
-            <Input
-              type="email"
-              label="Email:"
-              placeholder="Enter your email address"
-              value={email}
-              handleInput={handleEmailInput}
-              width={{ width: "100%" }}
-            />
-            <Input
-              type="password"
-              label="Password:"
-              placeholder="Create your password (at least 8 characters)"
-              value={password}
-              handleInput={handlePasswordInput}
-              width={{ width: "100%" }}
-            />
-            <a className="forgot-password" onClick={resetPassword}>
-              Forgot Password?
-            </a>
-            <MainButton width={{ width: "100%" }} onClick={signin}>
-              Sign in
-            </MainButton>
-          </form>
-          <div className="or-form">
-            <div className="or-container">
-              <span className="or">
-                <span>Or</span>
-                <span className="small-screen-only"> sign in with</span>
-              </span>
-            </div>
-            <div className="social-buttons-container">
-              <SocialButton
-                brandName="Google"
-                registrationType="sign in"
-                brandLink={GoogleIcon}
-                width={{ width: "100%" }}
-                onClick={signinWithGoogle}
-              />
-              <SocialButton
-                brandName="Facebook"
-                registrationType="sign in"
-                brandLink={FacebookIcon}
-                width={{ width: "100%" }}
-                onClick={signinWithFacebook}
-              />
-            </div>
-          </div>
-          <p className="sign-up">
-            Don't you have an account? <Link to="SignupPage">Sign up</Link>
+          </main>
+          <p className="copyright not-small-screen-only">
+            &copy; 2023 ALL RIGHTS RESERVED
           </p>
-        </main>
-        <p className="copyright not-small-screen-only">
+        </div>
+        <p className="copyright small-screen-only">
           &copy; 2023 ALL RIGHTS RESERVED
         </p>
       </div>
-      <p className="copyright small-screen-only">
-        &copy; 2023 ALL RIGHTS RESERVED
-      </p>
-    </div>
+    </>
   );
 };
 

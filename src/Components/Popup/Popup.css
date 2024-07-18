@@ -1,0 +1,46 @@
+.PopupContainer {
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    box-shadow: 0 0 15px rgb(0, 80, 0);
+}
+
+.success{
+    background-color: #00ff00;
+}
+
+.PopupContainer>.message{
+    color: rgb(0, 80, 0);
+    font-family: roboto;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    line-height: 20px;
+    width: fit-content;
+    margin: 0;
+}
+
+.PopupContainer>.closeButton{
+    background-color: transparent;
+    font-family: roboto;
+    font-weight: bold;
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    padding: 0;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.PopupContainer>.closeButton>img {
+    width: 100%;
+    height: 100%;
+}
+
