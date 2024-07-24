@@ -1,0 +1,48 @@
+// const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+// const nameRegex = /^[a-zA-Z\s'-]{1,30}$/;
+
+
+
+// function validateName(name: string) {
+//   if (nameRegex.test(name)){
+//     return {message:"good ✓",color:"green"};
+//   }else {
+//     return {message: "name is unvalid!" ,color: "red"};
+//   }
+// }
+
+// function validateEmail(email: string) {
+//     if (emailRegex.test(email)){
+//         return {message:"good ✓",color:"green"};
+//     }else {
+//         return {message: "email is unvalid!" ,color: "red"};
+//     }
+// }
+
+// function validatePassword(password: string) {
+//     if (password.length >= 8) {
+//         return {message:"good ✓",color:"green"};
+//     }else {
+//         return {message: "Password must be at least 8 characters long." ,color: "red"};
+//     }
+// }
+
+// function validateConfirmPassword(password: string,confirmPassword: string) {
+//     if (password == confirmPassword) {
+//         return {message:"good ✓",color:"green"};
+//     }else {
+//         return {message: "the password should match" ,color: "red"};
+//     }
+// }
+
+// function validatePrivacy(isChecked: boolean) {
+//     if (isChecked) {
+//         return {message:"good ✓",color:"green"};
+        
+//     }else {
+//         return {message: "You have to accept our privacy." ,color: "red"};
+//     }
+// }
+
+
+

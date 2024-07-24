@@ -1,5 +1,5 @@
 import "./Input.css";
-import { useId } from 'react';
+import { useId } from "react";
 
 interface Prompt {
   type: string;
@@ -8,6 +8,8 @@ interface Prompt {
   width?: {};
   value?: string;
   handleInput?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  validationResult?: {message: string, color: string};
+  show?: boolean;
 }
 
 const Input = ({
@@ -15,8 +17,10 @@ const Input = ({
   label,
   placeholder,
   width = { width: "388px" },
-  value = '',
+  value = "",
   handleInput,
+  validationResult,
+  show,
 }: Prompt) => {
   const id = useId();
   return (
@@ -28,7 +32,13 @@ const Input = ({
         placeholder={placeholder}
         value={value}
         onInput={handleInput}
+        style={show?{borderColor: validationResult?.color,borderStyle: "solid",borderWidth: "2px"}:{borderStyle: "solid"}}
       />
+      {show && validationResult && (
+        <span className="validationMessage" style={{ color: validationResult.color }}>
+          {validationResult.message}
+        </span>
+      )}
     </label>
   );
 };

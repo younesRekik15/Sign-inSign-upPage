@@ -35,6 +35,13 @@
   font-family: Roboto;
 }
 
+.validationMessage {
+  display: inline-block;
+  font-family: Roboto;
+  font-size: 16px;
+  padding: 5px 0 0 16px;
+}
+
 @media only screen and (max-width: 870px) {
   .input,
   .input p,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./SigninPage.css";
 import Popup from "../../Components/Popup/Popup";
 import SocialButton from "../../Components/SocialButton/SocialButton";
@@ -33,11 +33,29 @@ const SigninPage = (props: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [showErrorPopup, setShowErrorPopup] = useState(false);
+  const [timeoutId, setTimeoutId] = useState<number>(0);
 
   const toggleSuccessPopup = () => {
     setShowSuccessPopup(true);
-    setTimeout(()=>{setShowSuccessPopup(false)},5000);
+    setTimeout(() => {
+      setShowSuccessPopup(false);
+    }, 5000);
   };
+
+  const toggleErrorPopup = () => {
+    setShowErrorPopup(true);
+    if(timeoutId){
+      clearTimeout(timeoutId);
+    }
+    setTimeoutId(window.setTimeout(() =>{setShowErrorPopup(false)},5000))
+  };
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [timeoutId]);
 
   const handleEmailInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -57,6 +75,7 @@ const SigninPage = (props: Props) => {
       })
       .catch((error) => {
         console.log(error.code, error.text);
+        toggleErrorPopup();
       });
   };
 
@@ -70,6 +89,7 @@ const SigninPage = (props: Props) => {
       })
       .catch((error) => {
         console.log(error.code, error.text);
+        toggleErrorPopup();
       });
   };
 
@@ -84,6 +104,7 @@ const SigninPage = (props: Props) => {
       console.log(userCredential.user);
     } catch (error) {
       console.error("Error signing in:", error);
+      toggleErrorPopup();
     }
   };
 
@@ -96,7 +117,6 @@ const SigninPage = (props: Props) => {
         alert(error.code + " " + error.text);
       });
   };
-  
 
   return (
     <>
@@ -104,7 +124,17 @@ const SigninPage = (props: Props) => {
         show={showSuccessPopup}
         type="success"
         message="signed in successfully !"
-        togglePopup={()=>{setShowSuccessPopup(false)}}
+        togglePopup={() => {
+          setShowSuccessPopup(false);
+        }}
+      />
+      <Popup
+        show={showErrorPopup}
+        type="error"
+        message="something went wrong! please try again."
+        togglePopup={() => {
+          setShowErrorPopup(false);
+        }}
       />
       <div className="container">
         <div className="img-part"></div>
@@ -130,7 +160,7 @@ const SigninPage = (props: Props) => {
               <Input
                 type="password"
                 label="Password:"
-                placeholder="Create your password (at least 8 characters)"
+                placeholder="Enter your password (at least 8 characters)"
                 value={password}
                 handleInput={handlePasswordInput}
                 width={{ width: "100%" }}

@@ -8,15 +8,69 @@
     top: 20px;
     right: 20px;
     z-index: 10;
-    box-shadow: 0 0 15px rgb(0, 80, 0);
+    animation: toastDefault 5s ease-in-out;
+    
+}
+
+@keyframes toastDefault{
+    0%{
+        right: -50%;
+    }
+    4%{
+        right: 28px;
+    }
+    8%{
+        right: 19px;
+    }
+    10%{
+        right: 20px;
+    }
+    92%{
+        right: 20px;
+    }
+    96%{
+        right: 22px;
+    }
+    100%{
+        right: -50%;
+    }
+}
+
+@keyframes toastChange{
+    0%{
+        right: 20px;
+    }
+    50%{
+        right: 22px;
+    }
+    100%{
+        right: -50%;
+    }
 }
 
 .success{
-    background-color: #00ff00;
+    background-color: #8fff8f;
+    box-shadow: 0 0 5px #005000;
+}
+.success .message{
+    color: #005000;
+}
+.success svg{
+    fill: #005000;
+}
+
+.error{
+    background-color: #FF8F8F;
+    box-shadow: 0 0 5px #500000;
+}
+.error .message{
+    color: #500000;
+}
+.error svg{
+    fill: #500000;
 }
 
 .PopupContainer>.message{
-    color: rgb(0, 80, 0);
     font-family: roboto;
     font-size: 16px;
     font-weight: bold;
@@ -39,7 +93,7 @@
     cursor: pointer;
 }
 
-.PopupContainer>.closeButton>img {
+.PopupContainer>.closeButton>svg {
     width: 100%;
     height: 100%;
 }
