@@ -1,5 +1,6 @@
 .PopupContainer {
     padding: 20px;
+    width: 200px;
     border-radius: 10px;
     display: flex;
     flex-direction: row;

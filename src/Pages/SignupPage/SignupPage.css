@@ -87,6 +87,7 @@
   }
   
   form {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -153,6 +154,22 @@
     line-height: 160%;
     font-size: 18px;
     color: var(--secondary-text);
+  }
+  .strengthPassword {
+    position: relative;
+    width: calc( 100% - 4.50641131038px);
+    margin-top: -20px;
+  }
+  .strengthPassword span {
+    position: absolute;
+    
+    height: 5px;
+    top: -8px;
+    left: 2.25320565519px;
+    
+    border-radius: 2px;
+    background: red;
+    transition: all 300ms ease-in-out;
   }
   
   @font-face {

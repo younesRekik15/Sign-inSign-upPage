@@ -10,6 +10,7 @@ interface Prompt {
   handleInput?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   validationResult?: {message: string, color: string};
   show?: boolean;
+  testStrengthPassword?: (e: { target: { value: any; }; }) => void; 
 }
 
 const Input = ({
@@ -21,6 +22,7 @@ const Input = ({
   handleInput,
   validationResult,
   show,
+  testStrengthPassword,
 }: Prompt) => {
   const id = useId();
   return (
@@ -32,6 +34,7 @@ const Input = ({
         placeholder={placeholder}
         value={value}
         onInput={handleInput}
+        onChange={testStrengthPassword}
         style={show?{borderColor: validationResult?.color,borderStyle: "solid",borderWidth: "2px"}:{borderStyle: "solid"}}
       />
       {show && validationResult && (

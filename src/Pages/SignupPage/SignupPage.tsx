@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import "./SignupPage.css";
 import Popup from "../../Components/Popup/Popup";
 import SocialButton from "../../Components/SocialButton/SocialButton";
@@ -24,6 +25,7 @@ const SignupPage = (props: Props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [score, setScore] = useState(0)
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
@@ -35,18 +37,26 @@ const SignupPage = (props: Props) => {
 
   const toggleSuccessPopup = () => {
     setShowSuccessPopup(true);
-    if(timeoutId){
+    if (timeoutId) {
       clearTimeout(timeoutId);
     }
-    setTimeoutId(window.setTimeout(() =>{setShowSuccessPopup(false)},5000))
+    setTimeoutId(
+      window.setTimeout(() => {
+        setShowSuccessPopup(false);
+      }, 5000)
+    );
   };
 
   const toggleErrorPopup = () => {
     setShowErrorPopup(true);
-    if(timeoutId){
+    if (timeoutId) {
       clearTimeout(timeoutId);
     }
-    setTimeoutId(window.setTimeout(() =>{setShowErrorPopup(false)},5000))
+    setTimeoutId(
+      window.setTimeout(() => {
+        setShowErrorPopup(false);
+      }, 5000)
+    );
   };
 
   useEffect(() => {
@@ -63,8 +73,15 @@ const SignupPage = (props: Props) => {
     setEmail(e.target.value);
   };
 
+  var zxcvbn = require("zxcvbn");
   const handlePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+    if (e.target.value !== ""){
+      let pass = zxcvbn(e.target.value);
+      setScore(pass.score);
+    } else {
+      setScore(0);
+    }
   };
 
   const handleConfirmPasswordInput = (
@@ -165,11 +182,15 @@ const SignupPage = (props: Props) => {
   }
 
   function validateConfirmPassword(password: string, confirmPassword: string) {
-    if(confirmPassword == "") {
-      return { message: "You have to confirm your password.", color: "red", show: true };
-    }else if (password == confirmPassword) {
+    if (confirmPassword == "") {
+      return {
+        message: "You have to confirm your password.",
+        color: "red",
+        show: true,
+      };
+    } else if (password == confirmPassword) {
       return { message: "good ✓", color: "green", show: false };
-    }else{
+    } else {
       return { message: "Passwords do not match.", color: "red", show: true };
     }
   }
@@ -179,13 +200,12 @@ const SignupPage = (props: Props) => {
       return { message: "good ✓", color: "green" };
     } else {
       return {
-        message: "You have to accept our privacy.",
+        message: "You have to accept our privacy and terms of service.",
         color: "red",
         show: true,
       };
     }
   }
-
   const fshowValidations = () => {
     return (
       validateName(name).show ||
@@ -195,8 +215,26 @@ const SignupPage = (props: Props) => {
       validatePrivacy(isChecked).show
     );
   };
+
+  useEffect(() => {
+    console.log('State updated:', password);
+  }, [password]);
+  
   // validations ^^^^^^^^^^^^^^^^^^^^^^
 
+  
+  useEffect(() => {
+    console.log('State updated:', score);
+  }, [score]);
+  const pswrdColorMsg = () => {
+    switch(score){
+      case 0: return { color: "transparent", message: ""};
+      case 1: return { color: "#e54243", message: "Weak"};
+      case 2: return { color: "#f89e4a", message: "medium"};
+      case 3: return { color: "#1593fe", message: "strong!"};
+      case 4: return { color: "#36c565", message: "very strong!!"};
+    }
+  }
   return (
     <>
       <Popup
@@ -255,9 +293,13 @@ const SignupPage = (props: Props) => {
                 value={password}
                 handleInput={handlePasswordInput}
                 width={{ width: "100%" }}
-                validationResult={validatePassword(password)}
                 show={showValidations}
               ></Input>
+              <span className="strengthPassword" style={{color: pswrdColorMsg()?.color}}>
+                <span style={{width: String(25*score)+"%",background: pswrdColorMsg()?.color }}>
+                </span>
+                {pswrdColorMsg()?.message}
+              </span>
               <Input
                 type="password"
                 label="Confirm Password:"
@@ -276,12 +318,16 @@ const SignupPage = (props: Props) => {
                 className="privacy-policy"
               >
                 <input
-                  style={(isChecked && showValidations)?{accentColor: "green"}:{background: "red"}}
+                  style={
+                    isChecked && showValidations
+                      ? { accentColor: "green" }
+                      : { background: "red" }
+                  }
                   type="checkbox"
                   name="privacy-policy-checkbox"
                   id="privacy-policy-checkbox"
                   onChange={() => {
-                    setIsChecked(true);
+                    setIsChecked(!isChecked);
                   }}
                 />
                 <span>
@@ -289,10 +335,12 @@ const SignupPage = (props: Props) => {
                   <a href="#">Terms of Service</a>.<br />
                   {showValidations ? (
                     isChecked ? (
-                      <span style={{ color: "green" }}>good ✓</span>
+                      <span style={{ color: "green" }}>
+                        good ✓
+                      </span>
                     ) : (
                       <span style={{ color: "red" }}>
-                        you have to accept our privacy
+                        You have to accept our privacy and terms of service
                       </span>
                     )
                   ) : (
