@@ -229,10 +229,10 @@ const SignupPage = (props: Props) => {
   const pswrdColorMsg = () => {
     switch(score){
       case 0: return { color: "transparent", message: ""};
-      case 1: return { color: "#e54243", message: "Weak"};
-      case 2: return { color: "#f89e4a", message: "medium"};
-      case 3: return { color: "#1593fe", message: "strong!"};
-      case 4: return { color: "#36c565", message: "very strong!!"};
+      case 1: return { color: "#e54243", message: "POOR"};
+      case 2: return { color: "#f89e4a", message: "FAIR"};
+      case 3: return { color: "#1593fe", message: "GOOD"};
+      case 4: return { color: "#36c565", message: "EXELLENT"};
     }
   }
   return (
