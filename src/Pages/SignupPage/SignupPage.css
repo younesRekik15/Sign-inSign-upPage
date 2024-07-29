@@ -157,15 +157,15 @@
   }
   .strengthPassword {
     position: relative;
-    width: calc( 100% - 4.50641131038px);
+    width: calc( 100% - 16px);
     margin-top: -20px;
+    left: 8px;
   }
   .strengthPassword span {
     position: absolute;
     
     height: 5px;
     top: -8px;
-    left: 2.25320565519px;
     
     border-radius: 2px;
     background: red;
@@ -252,6 +252,17 @@
   
     .sign-up {
       font-size: 16px;
+    }
+
+    .strengthPassword {
+      margin-top: -14px;
+      left: 8px;
+    }
+
+    .strengthPassword span {
+      height: 5px;
+      top: -6px;
+      border-radius: 2px;
     }
   }
   

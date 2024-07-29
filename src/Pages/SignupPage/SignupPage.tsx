@@ -155,7 +155,7 @@ const SignupPage = (props: Props) => {
 
   function validateName(name: string) {
     if (nameRegex.test(name)) {
-      return { message: "good ✓", color: "green", show: false };
+      return { message: "good ✓", color: "#36c565", show: false };
     } else {
       return { message: "name is unvalid!", color: "red", show: true };
     }
@@ -163,7 +163,7 @@ const SignupPage = (props: Props) => {
 
   function validateEmail(email: string) {
     if (emailRegex.test(email)) {
-      return { message: "good ✓", color: "green", show: false };
+      return { message: "good ✓", color: "#36c565", show: false };
     } else {
       return { message: "email is unvalid!", color: "red", show: true };
     }
@@ -171,7 +171,7 @@ const SignupPage = (props: Props) => {
 
   function validatePassword(password: string) {
     if (password.length >= 8) {
-      return { message: "good ✓", color: "green", show: false };
+      return { message: "good ✓", color: "#36c565", show: false };
     } else {
       return {
         message: "Password must be at least 8 characters long.",
@@ -189,7 +189,7 @@ const SignupPage = (props: Props) => {
         show: true,
       };
     } else if (password == confirmPassword) {
-      return { message: "good ✓", color: "green", show: false };
+      return { message: "good ✓", color: "#36c565", show: false };
     } else {
       return { message: "Passwords do not match.", color: "red", show: true };
     }
@@ -197,7 +197,7 @@ const SignupPage = (props: Props) => {
 
   function validatePrivacy(isChecked: boolean) {
     if (isChecked) {
-      return { message: "good ✓", color: "green" };
+      return { message: "good ✓", color: "#36c565" };
     } else {
       return {
         message: "You have to accept our privacy and terms of service.",
@@ -320,7 +320,7 @@ const SignupPage = (props: Props) => {
                 <input
                   style={
                     isChecked && showValidations
-                      ? { accentColor: "green" }
+                      ? { accentColor: "#36c565" }
                       : { background: "red" }
                   }
                   type="checkbox"
@@ -335,7 +335,7 @@ const SignupPage = (props: Props) => {
                   <a href="#">Terms of Service</a>.<br />
                   {showValidations ? (
                     isChecked ? (
-                      <span style={{ color: "green" }}>
+                      <span style={{ color: "#36c565" }}>
                         good ✓
                       </span>
                     ) : (
